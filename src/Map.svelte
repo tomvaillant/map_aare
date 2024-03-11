@@ -46,9 +46,9 @@
                                     flyToCameraPosition(camera_positions[currentSegmentIndex]);
                                     if (currentSegmentIndex === 1) { // Index 1 corresponds to the second position due to 0-based indexing
                                         // Toggle visibility of the "lakes" layer
-                                        map.setLayoutProperty('future_raster', 'visibility', 'visible');
+                                        map.setLayoutProperty('CH_2075', 'visibility', 'visible');
                                     } else {
-                                        map.setLayoutProperty('future_raster', 'visibility', 'none');
+                                        map.setLayoutProperty('CH_2075', 'visibility', 'none');
                                     }
                                 }
                                 break;
@@ -73,6 +73,11 @@
     top: 0;
     bottom: 0;
     width: 100%;
+}
+@media (max-width: 768px) { /* Adjust 768px based on your definition of mobile devices */
+  .scrollytelling {
+    grid-template-columns: 80vw;
+  }
 }
 </style>
   
