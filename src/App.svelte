@@ -7,18 +7,18 @@
   <Map />
   <!-- <MapVideo /> -->
   <div class="scrollytelling">
-    <div class="textbox" id="textbox-1">Content 1</div>
-    <div class="textbox" id="textbox-2">Content 2</div>
-    <div class="textbox" id="textbox-3">Content 3</div>
-    <div class="textbox" id="textbox-4">Content 4</div>
-    <div class="textbox" id="textbox-5">Content 5</div>
-    <div class="textbox" id="textbox-6">Content 6</div>
-    <div class="textbox" id="textbox-7">Content 7</div>
-    <div class="textbox" id="textbox-8">Content 8</div>
-    <div class="textbox" id="textbox-9">Content 9</div>
-    <div class="textbox" id="textbox-10">Content 10</div>
-    <div class="textbox" id="textbox-11">Content 11</div>
-    <div class="textbox" id="textbox-12">Content 12</div>
+    <div class="textbox" id="position-1">Content</div>
+    <div class="textbox">Content 2</div>
+    <div class="textbox" id="position-2">Content</div>
+    <div class="textbox">Content</div>
+    <div class="textbox" id="position-3">Conten</div>
+    <div class="textbox">Conten</div>
+    <div class="textbox" id="position-4">Conten</div>
+    <div class="textbox">Conten</div>
+    <div class="textbox" id="position-5">Conten</div>
+    <div class="textbox">Content</div>
+    <div class="textbox" id="position-6">Content</div>
+    <div class="textbox">Content</div>
   </div>
 </main>
 
@@ -26,6 +26,13 @@
   :global(html, body) {
     margin: 0 !important;
     padding: 0 !important;
+    background: linear-gradient(
+      180deg,
+      rgba(222, 244, 250, 1) 0%,
+      rgba(255, 255, 255, 1) 49%
+    );
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
   }
   main {
     height: 100vh;
@@ -53,4 +60,9 @@
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
+  @media (max-width: 768px) { /* Adjust 768px based on your definition of mobile devices */
+  .scrollytelling {
+    grid-template-columns: 80vw;
+  }
+}
 </style>
