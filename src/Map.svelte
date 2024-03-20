@@ -1,62 +1,81 @@
 
 <script>
-    import { onMount } from 'svelte';
-    import * as maptilersdk from '@maptiler/sdk';
-    import { camera_positions } from './routes.js';
+import { onMount } from 'svelte';
+import * as maptilersdk from '@maptiler/sdk';
+import { camera_positions } from './routes.js';
 
-    let map;
-    let activeChapterName = ''; // Tracks the active chapter
+let map;
+let activeChapterName = '';
 
-  onMount(() => {
+onMount(() => {
     maptilersdk.config.apiKey = 'K3gzOB80giEGLYFtHLTQ';
-    const initialPosition = camera_positions[0]; // Initialize with the first camera position
+    const initialPosition = camera_positions[0]; 
 
     map = new maptilersdk.Map({
-      container: 'map', // container ID
-      style: '519c9b05-19d1-47ee-89bb-12e8560ae08c', // your style here
-      center: [8.19510, 46.56919],
-      zoom: initialPosition.zoom,
-      bearing: initialPosition.bearing,
-      pitch: initialPosition.pitch,
-      maxPitch: 85,
-      maxZoom: 14,
-      terrain: true,
-      terrainControl: true
+    container: 'map',
+    style: '484efd85-403c-4c11-9165-6f827099fcbf',
+    center: [8.19510, 46.56919],
+    zoom: initialPosition.zoom,
+    bearing: initialPosition.bearing,
+    pitch: initialPosition.pitch,
+    maxPitch: 85,
+    maxZoom: 14,
+    terrain: true,
+    terrainControl: true
     });
 
     window.onscroll = () => {
-      for (let i = 1; i <= camera_positions.length; i++) {
-        let positionId = `position-${i}`;
-        if (isElementOnScreen(positionId)) {
-          setActiveChapter(positionId);
-          break;
+        for (let i = 1; i <= camera_positions.length; i++) {
+            let positionId = `position-${i}`;
+            if (isElementOnScreen(positionId)) {
+            updateChapter(positionId);
+            break;
+            }
         }
-      }
     };
 
-    function setActiveChapter(chapterId) {
-      if (chapterId === activeChapterName) return;
+    function updateChapter(positionId) {
+        if (activeChapterName === positionId) return;
 
-      const chapterIndex = parseInt(chapterId.split('-')[1]) - 1;
-      const position = camera_positions[chapterIndex];
-      if (position) {
-        map.flyTo({
-            ...position,
-            freezeElevation: true
-        });
-        activeChapterName = chapterId;
-      }
+        const chapterIndex = parseInt(positionId.split('-')[1]) - 1;
+        const position = camera_positions[chapterIndex];
+        if (position) {
+            map.flyTo({ 
+                ...position, 
+                freezeElevation: true 
+            });
+        activeChapterName = positionId;
+        }
+        switch (activeChapterName) {
+        case 'position-2':
+            toggleLayerVisibility('future');
+            console.log("logging position 2");
+        break;
+        case 'position-4':
+            toggleLayerVisibility('future');
+        break;
+        }
+    }
+
+    function toggleLayerVisibility(layerId) {
+        const layerVisibility = map.getLayoutProperty(layerId, 'visibility');
+        console.log(layerVisibility);
+        if (layerVisibility === 'visible') {
+            map.setLayoutProperty(layerId, 'visibility', 'none');
+        } else {
+            map.setLayoutProperty(layerId, 'visibility', 'visible');
+        }
     }
 
     function isElementOnScreen(id) {
-      const element = document.getElementById(id);
-      if (element) {
-        const bounds = element.getBoundingClientRect();
-        return bounds.top < window.innerHeight && bounds.bottom > 0;
-      }
-      return false;
+        const element = document.getElementById(id);
+        if (element) {
+            const bounds = element.getBoundingClientRect();
+            return bounds.top < window.innerHeight && bounds.bottom >= 0;
+        }
+        return false;
     }
-  });
+});
 </script>
 
 
@@ -67,11 +86,6 @@
     top: 0;
     bottom: 0;
     width: 100%;
-}
-@media (max-width: 768px) { /* Adjust 768px based on your definition of mobile devices */
-  .scrollytelling {
-    grid-template-columns: 80vw;
-  }
 }
 </style>
   

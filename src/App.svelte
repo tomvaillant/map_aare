@@ -31,12 +31,14 @@
       rgba(222, 244, 250, 1) 0%,
       rgba(255, 255, 255, 1) 49%
     );
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
   }
   main {
     height: 100vh;
     position: relative;
   }
-  
+
   .scrollytelling {
     display: grid;
     grid-template-rows: repeat(8, 12vh);
@@ -58,4 +60,9 @@
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
+  @media (max-width: 768px) { /* Adjust 768px based on your definition of mobile devices */
+  .scrollytelling {
+    grid-template-columns: 80vw;
+  }
+}
 </style>
