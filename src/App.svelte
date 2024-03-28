@@ -7,18 +7,22 @@
   <Map />
   <!-- <MapVideo /> -->
   <div class="scrollytelling">
-    <div class="textbox" id="position-1">Content</div>
-    <div class="textbox">Content 2</div>
-    <div class="textbox" id="position-2">Content</div>
-    <div class="textbox">Content</div>
-    <div class="textbox" id="position-3">Conten</div>
-    <div class="textbox">Conten</div>
-    <div class="textbox" id="position-4">Conten</div>
-    <div class="textbox">Conten</div>
-    <div class="textbox" id="position-5">Conten</div>
-    <div class="textbox">Content</div>
-    <div class="textbox" id="position-6">Content</div>
-    <div class="textbox">Content</div>
+    <section id="position-1" class="sizer active">
+      <div class="textbox">Content</div>
+      <div class="textbox">Content</div>
+    </section>
+    <section id="position-2" class="sizer" >
+      <div class="textbox">Content 2</div>
+      <div class="textbox">Content</div>
+    </section>
+    <section id="position-3" class="sizer">
+      <div class="textbox">Content</div>
+      <div class="textbox">Content</div>
+    </section>
+    <section id="position-4" class="sizer">
+      <div class="textbox">Conten</div>
+      <div class="textbox">Conten</div>
+    </section>
   </div>
 </main>
 
@@ -44,13 +48,21 @@
     grid-template-rows: repeat(8, 12vh);
     grid-template-columns: 40vw;
     justify-content: center;
-    gap: 50vh;
+    gap: 130vh;
     position: sticky;
     top: 20vh; /* Adjust as needed to control when the scrollytelling starts */
     left: 0;
     right: 0;
     padding: 20px;
     box-sizing: border-box;
+  }
+
+  .sizer {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50vh;
   }
 
   .textbox {

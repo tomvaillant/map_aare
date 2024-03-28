@@ -2,14 +2,13 @@
 <script>
 import { onMount } from 'svelte';
 import * as maptilersdk from '@maptiler/sdk';
-import { camera_positions } from './routes.js';
+import { chapters } from './routes.js';
 
 let map;
-let activeChapterName = '';
 
 onMount(() => {
     maptilersdk.config.apiKey = 'K3gzOB80giEGLYFtHLTQ';
-    const initialPosition = camera_positions[0]; 
+    const initialPosition = chapters['position-1']; 
 
     map = new maptilersdk.Map({
     container: 'map',
@@ -24,42 +23,49 @@ onMount(() => {
     terrainControl: true
     });
 
-    window.onscroll = () => {
-        for (let i = 1; i <= camera_positions.length; i++) {
-            let positionId = `position-${i}`;
-            if (isElementOnScreen(positionId)) {
-            updateChapter(positionId);
-            break;
+    map.on('load', () => {
+        if (map.getLayer('future')) {
+            map.setLayoutProperty('future', 'visibility', 'none');
+        }
+    });
+
+    window.onscroll = function () {
+        var chapterNames = Object.keys(chapters);
+        for (var i = 0; i < chapterNames.length; i++) {
+            var chapterName = chapterNames[i];
+            if (isElementOnScreen(chapterName)) {
+                setActiveChapter(chapterName);
+                break;
             }
         }
     };
 
-    function updateChapter(positionId) {
-        if (activeChapterName === positionId) return;
+    var activeChapterName = 'position-1';
+    function setActiveChapter(chapterName) {
+        if (chapterName === activeChapterName) return;
 
-        const chapterIndex = parseInt(positionId.split('-')[1]) - 1;
-        const position = camera_positions[chapterIndex];
-        if (position) {
-            map.flyTo({ 
-                ...position, 
-                freezeElevation: true 
-            });
-        activeChapterName = positionId;
-        }
+        map.flyTo({
+            ...chapters[chapterName],
+            freezeElevation: true
+        });
+
+        document.getElementById(chapterName).classList.add('active');
+        document.getElementById(activeChapterName).classList.remove('active');
+
+        activeChapterName = chapterName;
+
         switch (activeChapterName) {
-        case 'position-2':
-            toggleLayerVisibility('future');
-            console.log("logging position 2");
-        break;
-        case 'position-4':
-            toggleLayerVisibility('future');
-        break;
+            case 'position-2':
+                toggleLayerVisibility('future');
+            break;
+            case 'position-4':
+                toggleLayerVisibility('future');
+            break;
         }
     }
 
     function toggleLayerVisibility(layerId) {
         const layerVisibility = map.getLayoutProperty(layerId, 'visibility');
-        console.log(layerVisibility);
         if (layerVisibility === 'visible') {
             map.setLayoutProperty(layerId, 'visibility', 'none');
         } else {
@@ -68,13 +74,11 @@ onMount(() => {
     }
 
     function isElementOnScreen(id) {
-        const element = document.getElementById(id);
-        if (element) {
-            const bounds = element.getBoundingClientRect();
-            return bounds.top < window.innerHeight && bounds.bottom >= 0;
-        }
-        return false;
+        var element = document.getElementById(id);
+        var bounds = element.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
     }
+
 });
 </script>
 
