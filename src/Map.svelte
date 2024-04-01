@@ -13,7 +13,7 @@ onMount(() => {
     map = new maptilersdk.Map({
     container: 'map',
     style: '484efd85-403c-4c11-9165-6f827099fcbf',
-    center: [8.19510, 46.56919],
+    center: [8.24841, 46.56990],
     zoom: initialPosition.zoom,
     bearing: initialPosition.bearing,
     pitch: initialPosition.pitch,
@@ -24,8 +24,8 @@ onMount(() => {
     });
 
     map.on('load', () => {
-        if (map.getLayer('future')) {
-            map.setLayoutProperty('future', 'visibility', 'none');
+        if (map.getLayer('future_4')) {
+            map.setLayoutProperty('future_4', 'visibility', 'none');
         }
     });
 
@@ -56,10 +56,10 @@ onMount(() => {
 
         switch (activeChapterName) {
             case 'position-2':
-                toggleLayerVisibility('future');
+                toggleLayerVisibility('future_4');
             break;
             case 'position-4':
-                toggleLayerVisibility('future');
+                toggleLayerVisibility('future_4');
             break;
         }
     }

@@ -1,10 +1,10 @@
 export const chapters = {
     'position-1': {
-        'center': [8.19510, 46.56919],
-        'bearing': 92.41,
+        'center': [8.24841, 46.56990],
+        'bearing': 83,
         'duration': 4000,
-        'zoom': 11.64,
-        'pitch': 51.90,  
+        'zoom': 12,
+        'pitch': 59,  
     },
     'position-2': {
         'center': [8.31585, 46.59442],
@@ -24,7 +24,7 @@ export const chapters = {
         'center': [8.05502, 46.74252],
         'bearing': -88.23,
         'duration': 4000,
-        'zoom': 12.10,
+        'zoom': 11.10,
         'pitch': 67.03,
     },
     'position-5': {
