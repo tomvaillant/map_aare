@@ -24,8 +24,8 @@ onMount(() => {
     });
 
     map.on('load', () => {
-        if (map.getLayer('future_4')) {
-            map.setLayoutProperty('future_4', 'visibility', 'none');
+        if (map.getLayer('future_5')) {
+            map.setLayoutProperty('future_5', 'visibility', 'none');
         }
     });
 
@@ -56,10 +56,10 @@ onMount(() => {
 
         switch (activeChapterName) {
             case 'position-2':
-                toggleLayerVisibility('future_4');
+                toggleLayerVisibility('future_5');
             break;
             case 'position-4':
-                toggleLayerVisibility('future_4');
+                toggleLayerVisibility('future_5');
             break;
         }
     }
