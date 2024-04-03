@@ -59,7 +59,7 @@ onMount(() => {
                 setTimeout(() => toggleLayerVisibility('future'), 500);
             break;
             case 'position-4':
-                setTimeout(() => toggleLayerVisibility('future'), 500);
+                setTimeout(() => toggleLayerVisibility('future'), 1000);
             break;
         }
     }

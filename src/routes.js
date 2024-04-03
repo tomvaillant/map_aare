@@ -7,11 +7,11 @@ export const chapters = {
         'pitch': 59,  
     },
     'position-2': {
-        'center': [8.31585, 46.59442],
-        'bearing': -10.79,
+        'center': [8.3339, 46.57317],
+        'bearing': -20.24,
         'duration': 4000,
-        'zoom': 11.64,
-        'pitch': 54.97,
+        'zoom': 12.35375,
+        'pitch': 53,
     },
     'position-3': {
         'center': [8.30221, 46.71064],
