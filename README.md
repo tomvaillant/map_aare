@@ -1,3 +1,3 @@
 # Svelte + Vite
 
-Testing Vercel deployment
+Sample template for mapbox scrolly or mapbox auto-play in lite Svelte app.
